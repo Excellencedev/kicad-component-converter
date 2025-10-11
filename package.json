@@ -8,23 +8,30 @@
     "test:pull-kicad-footprints": "git clone --depth 1 https://gitlab.com/kicad/libraries/kicad-footprints.git && bun run test:update-kicad-file-names",
     "test:update-kicad-file-names": "tsx ./scripts/generate-kicad-file-paths.ts",
     "test": "bun test",
-    "build": "npm run build:lib && npm run build:cli",
-    "build:lib": "tsup-node ./src/index.ts --dts --sourcemap --format esm",
+    "build": "node init && npm run build:lib && npm run build:cli",
+    "build:lib": "node init && tsup-node ./src/index.ts --dts --sourcemap --format esm",
     "benchmark": "DEBUG='' RUN_BENCHMARK=1 npx ava --color -T 2m ./tests/kicad-file-tests/benchmark.test.ts",
     "cli": "tsx ./src/cli/cli.ts",
-    "build:cli": "tsup-node ./src/cli/cli.ts --dts --sourcemap --format esm",
+    "build:cli": "node init && tsup-node ./src/cli/cli.ts --dts --sourcemap --format esm",
     "cli:test-convert": "npm run cli -- convert-kicad-directory --input-dir ./kicad-footprints/Battery.pretty --output-dir ./test-output",
     "format": "biome format . --write",
     "format:check": "biome format .",
-    "start": "vite",
-    "build:site": "vite build",
+    "start": "node init && vite",
+    "build:site": "node init && vite build",
     "vercel-build": "bun run build:site"
   },
   "bin": {
     "kicad-mod-converter": "./dist/cli.js"
   },
-  "files": ["dist"],
-  "keywords": ["kicad", "json", "converter", "electronics"],
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "kicad",
+    "json",
+    "converter",
+    "electronics"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {

@@ -2,10 +2,10 @@ kicad-footprints
 node_modules
 dist
 test-output
-.vscode
 .vercel
 .aider.*
 static-site
 .aider*
 
 *.diff.png
+config.bat
